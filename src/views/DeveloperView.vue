@@ -1,13 +1,11 @@
 <template>
-    <div class="view view_delevoper">
-        AUTH
-    </div>
+  <div class="view view_developer">DeveloperView</div>
 </template>
 
 <script lang="ts">
 import { defineComponent } from "vue";
 
 export default defineComponent({
-    name: "DelevoperView",
+  name: "DeveloperView",
 });
 </script>

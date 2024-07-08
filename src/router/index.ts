@@ -4,31 +4,32 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/auth",
     name: "AuthView",
-    component: () =>
-      import("../views/AuthView.vue"),
+    component: () => import("../views/AuthView.vue"),
   },
 
   {
     path: "/client",
     name: "ClientView",
-    component: () =>
-      import("../views/ClientView.vue"),
+    component: () => import("../views/ClientView.vue"),
   },
 
   {
-    path: "/delevoper",
-    name: "DelevoperView",
-    component: () =>
-      import("../views/DelevoperView.vue"),
+    path: "/developer",
+    name: "DeveloperView",
+    component: () => import("../views/DeveloperView.vue"),
   },
 
   {
     path: "/task",
     name: "TaskView",
-    component: () =>
-      import("../views/TaskView.vue"),
+    component: () => import("../views/TaskView.vue"),
   },
 
+  {
+    path: "/contract",
+    name: "ContractView",
+    component: () => import("../views/ContractView.vue"),
+  },
 ];
 
 const router = createRouter({
