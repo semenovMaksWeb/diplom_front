@@ -8,7 +8,7 @@ const http = axios.create({
 const { cookies } = useCookies();
 
 http.interceptors.request.use((res) => {
-    res.headers.common["Authorization"] = cookies.get("token");
+    res.headers["Authorization"] = cookies.get("token");
     return res;
 });
 
