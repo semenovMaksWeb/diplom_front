@@ -22,6 +22,9 @@ export default createStore({
     async acitonProfile(context) {
       const profile = await api.getProfile(cookies.get("token"));
       context.commit("saveProfile", profile)
+    },
+    deleteProfile(context) {
+      context.commit("saveProfile", null);
     }
   },
   modules: {},

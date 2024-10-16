@@ -15,7 +15,7 @@ export function FormLogin() {
         const res = await api.auth(telephone.value, password.value, isDeveloper.value);
         cookies.set("token", res);
         await store.dispatch("acitonProfile");
-        router.push("")
+        await router.push("/");
     }
     return {
         telephone,

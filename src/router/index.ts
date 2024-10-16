@@ -1,9 +1,15 @@
+import store from "@/store";
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
 import { useCookies } from "vue3-cookies";
 
 const { cookies } = useCookies();
 
 const routes: Array<RouteRecordRaw> = [
+  {
+    path: "/",
+    name: "index",
+    component: () => import("../views/TaskView.vue"),
+  },
   {
     path: "/auth",
     name: "AuthView",
@@ -40,13 +46,36 @@ const router = createRouter({
   routes,
 });
 
+const redirectAuthView = (next: any) => {
+  next({
+    name: "AuthView",
+  });
+}
+
+const redirectMain = (next: any) => {
+  next({
+    name: "TaskView",
+  });
+}
+
 router.beforeEach(async (to, from, next) => {
-  console.log(to.name);
-  if (!cookies.get("token") && to.name !== "AuthView") {
-    next({
-      name: "AuthView",
-    });
+  if (!cookies.get("token") && to.name != "AuthView") {
+    redirectAuthView(next);
+    return;
   }
+
+  if (!store.getters.getProfile) {
+    await store.dispatch("acitonProfile");
+  }
+
+  if (store.getters.getProfile && to.name == "AuthView") {
+    redirectMain(next);
+  }
+
+  if (cookies.get("token") && store.getters.getProfile == null) {
+    redirectAuthView(next);
+  }
+
   next();
 });
 
