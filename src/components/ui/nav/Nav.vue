@@ -1,6 +1,5 @@
 <template>
   <nav class="nav">
-    <router-link class="link nav__link" to="/foo">Главная</router-link>
     <router-link class="link nav__link" to="/client">Клиенты</router-link>
     <router-link class="link nav__link" to="/developer">
       Разработчики

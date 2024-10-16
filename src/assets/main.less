@@ -25,3 +25,41 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.view {
+  margin-top: 10px;
+}
+
+.h2 {
+  margin-bottom: 10px;
+}
+
+.wrapper {
+  display: flex;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.label {
+  margin-right: 5px;
+}
+
+.button {
+  border-radius: 4px;
+  background-color: transparent;
+  padding: 5px 15px;
+  cursor: pointer;
+  transition: all 0.5s;
+
+  &.button_success {
+    border: 1px solid #008000;
+    color: #008000;
+    background-color: #fff;
+
+    &:hover {
+      color: #fff;
+      border: 1px solid #fff;
+      background-color: #008000;
+    }
+  }
+}

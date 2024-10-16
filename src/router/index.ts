@@ -1,4 +1,7 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from "vue-router";
+import { useCookies } from "vue3-cookies";
+
+const { cookies } = useCookies();
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -35,6 +38,16 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
+});
+
+router.beforeEach(async (to, from, next) => {
+  console.log(to.name);
+  if (!cookies.get("token") && to.name !== "AuthView") {
+    next({
+      name: "AuthView",
+    });
+  }
+  next();
 });
 
 export default router;
