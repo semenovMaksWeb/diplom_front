@@ -1,4 +1,6 @@
 import { api } from "@/api";
+import router from "@/router";
+import store from "@/store";
 import { ref } from "vue";
 import { useCookies } from 'vue3-cookies';
 
@@ -12,6 +14,8 @@ export function FormLogin() {
     const clickButton = async function () {
         const res = await api.auth(telephone.value, password.value, isDeveloper.value);
         cookies.set("token", res);
+        await store.dispatch("acitonProfile");
+        router.push("")
     }
     return {
         telephone,

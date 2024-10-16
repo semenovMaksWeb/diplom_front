@@ -1,5 +1,5 @@
 <template>
-  <header class="header"  v-if="cookies.get('token')">
+  <header class="header" v-if="isHeader">
     <div class="container container_header">
       <NavComponent />
       <router-link class="link nav__link" to="/">Выход</router-link>
@@ -15,7 +15,15 @@
 <script setup lang="ts">
 import NavComponent from "@/components/ui/nav/Nav.vue";
 import { useCookies } from "vue3-cookies";
+import store from "./store";
+import { computed } from "vue";
+
 const { cookies } = useCookies();
+
+const isHeader = computed(() => {
+  return !!store.getters.getProfile && cookies.get('token');
+})
+
 </script>
 
 <style lang="less">
