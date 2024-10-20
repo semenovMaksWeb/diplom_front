@@ -64,16 +64,18 @@ router.beforeEach(async (to, from, next) => {
     return;
   }
 
-  if (!store.getters.getProfile) {
+  if (!store.getters.getProfile && to.name == "AuthView") {
     await store.dispatch("acitonProfile");
   }
 
   if (store.getters.getProfile && to.name == "AuthView") {
     redirectMain(next);
+    return;
   }
 
-  if (cookies.get("token") && store.getters.getProfile == null) {
+  if (cookies.get("token") && !store.getters.getProfile && to.name != "AuthView") {
     redirectAuthView(next);
+    return;
   }
 
   next();

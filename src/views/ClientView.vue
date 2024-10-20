@@ -1,15 +1,15 @@
 <template>
   <div class="view viewClient">
-    <FormTableClient />
+    <TableClient />
   </div>
 </template>
 
 <script lang="ts">
-import FormTableClient from "@/components/Client/FormTableClient/FormTableClient.vue";
+import TableClient from "@/components/Client/TableClient/TableClient.vue";
 import { defineComponent } from "vue";
 
 export default defineComponent({
   name: "ClientView",
-  components: { FormTableClient }
+  components: { TableClient }
 });
 </script>

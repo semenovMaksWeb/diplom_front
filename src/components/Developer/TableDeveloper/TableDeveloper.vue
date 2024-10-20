@@ -5,11 +5,11 @@
 <script lang="ts">
 
 import VueTableLite from "vue3-table-lite/ts";
-import { FormTableClient } from "./FormTableClient";
+import { TableDeveloper } from "./TableDeveloper";
 export default {
     setup() {
         return {
-            ...FormTableClient()
+            ...TableDeveloper()
         }
     },
     components: { VueTableLite }

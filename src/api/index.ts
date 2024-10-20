@@ -22,11 +22,17 @@ const getClientList = async function () {
     return res.data;
 }
 
+const getDeveloperList = async function () {
+    const res = await http.get("/developer");
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
     exit,
-    getClientList
+    getClientList,
+    getDeveloperList
 }
 
 export {
