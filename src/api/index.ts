@@ -17,10 +17,16 @@ const exit = async function (token: string) {
     return res.data;
 }
 
+const getClientList = async function () {
+    const res = await http.get("/client");
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
-    exit
+    exit,
+    getClientList
 }
 
 export {
