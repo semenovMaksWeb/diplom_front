@@ -27,12 +27,25 @@ const getDeveloperList = async function () {
     return res.data;
 }
 
+const getContractDeveloper = async function () {
+    const res = await http.get("/contract");
+    return res.data;
+}
+
+
+const getContractClient = async function () {
+    const res = await http.get("/contract/id");
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
     exit,
     getClientList,
-    getDeveloperList
+    getDeveloperList,
+    getContractDeveloper,
+    getContractClient
 }
 
 export {
