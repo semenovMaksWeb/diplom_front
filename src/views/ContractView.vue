@@ -2,6 +2,7 @@
   <div class="view view_contract">
     <ContractFormFilter />
     <ContractTable />
+    <ContractFormAdd />
   </div>
 </template>
 
@@ -9,12 +10,14 @@
 import { defineComponent } from "vue";
 import ContractTable from "../components/Contract/ContractTable.vue"
 import ContractFormFilter from "@/components/Contract/ContractFormFilter.vue";
+import ContractFormAdd from "@/components/Contract/ContractFormAdd.vue";
 
 export default defineComponent({
   name: "ContractView",
   components: {
     ContractTable,
-    ContractFormFilter
+    ContractFormFilter,
+    ContractFormAdd
   },
 
 });
