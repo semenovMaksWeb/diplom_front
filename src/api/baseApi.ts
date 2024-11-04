@@ -18,7 +18,10 @@ http.interceptors.request.use((res) => {
 http.interceptors.response.use(function (response) {
     return response;
 }, async function (error) {
-    const textError = error.response.data.message ?? error;
+    let textError = error.response.data.message ?? error;
+    if (Array.isArray(textError)) {
+        textError = textError.join("\n");
+    }
     toast(textError, {
         "theme": "auto",
         "type": "error",

@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
         <fieldset class="fieldset">
-            <legend>Создание клиента:</legend>
+            <legend>Создание договор:</legend>
             <div class="form_elem_container">
                 <label class="label" for="">Выбрать клиента</label>
                 <select v-model="clientId">

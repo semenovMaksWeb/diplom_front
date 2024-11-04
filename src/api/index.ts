@@ -48,6 +48,11 @@ const saveContract = async function name(client_id: string) {
     return res.data;
 }
 
+const saveClient = async function name(name: string, surname: string, patronymic: string, telephone: string, password: string) {
+    const res = await http.post("/client", { name, surname, patronymic, telephone, password });
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
@@ -56,7 +61,8 @@ const api = {
     getDeveloperList,
     getContractDeveloper,
     getContractClient,
-    saveContract
+    saveContract,
+    saveClient
 }
 
 export {
