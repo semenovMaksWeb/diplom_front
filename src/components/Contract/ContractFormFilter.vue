@@ -23,28 +23,22 @@
 import { api } from '@/api';
 import store from '@/store';
 import { computed, onMounted, ref } from 'vue';
-import { contractTable } from './ContractTable';
+import { loaderTableContact } from '@/script/loaderTable';
 
 const isDeveloper = computed(() => {
     return store.getters.getProfile.isDeveloper
 })
 
 onMounted(async () => {
-    clientList.value = (await api.getClientList());
-    console.log(clientList.value);
+    if (store.getters.getProfile.isDeveloper) {
+        clientList.value = (await api.getClientList());
+    }
 })
 
 const filterActive = ref(null);
 const filterClient = ref(null);
 const clientList = ref([]);
 const clickFilter = async () => {
-    let result;
-    if (store.getters.getProfile.isDeveloper) {
-        result = await api.getContractDeveloper(filterClient.value, filterActive.value);
-    } else {
-        result = await api.getContractClient(filterActive.value);
-    }
-    contractTable.rows = result;
-
+    await loaderTableContact(filterClient.value, filterActive.value);
 }
 </script>

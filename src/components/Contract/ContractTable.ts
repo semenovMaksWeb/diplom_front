@@ -1,5 +1,4 @@
-import { api } from "@/api"
-import store from "@/store";
+import { loaderTableContact } from "@/script/loaderTable";
 import { onMounted, reactive } from "vue"
 
 export const contractTable = reactive({
@@ -45,18 +44,7 @@ export const contractTable = reactive({
 
 export function ContractTable() {
     onMounted(async () => {
-        contractTable.isLoading = true;
-        let result: never[] = [];
-
-        if (store.getters.getProfile.isDeveloper) {
-            result = await api.getContractDeveloper();
-        } else {
-            result = await api.getContractClient();
-        }
-
-        contractTable.rows = result;
-        contractTable.total = result.length;
-        contractTable.isLoading = false;
+        loaderTableContact();
     })
     return {
         contractTable
