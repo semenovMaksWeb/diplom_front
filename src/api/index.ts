@@ -27,14 +27,19 @@ const getDeveloperList = async function () {
     return res.data;
 }
 
-const getContractDeveloper = async function () {
-    const res = await http.get("/contract");
+const getContractDeveloper = async function (client_id?: number, active?: boolean) {
+    const res = await http.get("/contract", {
+        params: {
+            client_id,
+            active
+        }
+    });
     return res.data;
 }
 
 
-const getContractClient = async function () {
-    const res = await http.get("/contract/id");
+const getContractClient = async function (active?: boolean) {
+    const res = await http.get("/contract/id", { params: { active } });
     return res.data;
 }
 
