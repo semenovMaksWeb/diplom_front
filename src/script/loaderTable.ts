@@ -2,7 +2,7 @@ import { api } from "@/api";
 import { contractTable } from "@/components/Contract/ContractTable";
 import store from "@/store"
 
-export const loaderTableContact = async (filterClient?: number, filterActive?: boolean) => {
+export const loaderTableContact = async (filterClient?: string, filterActive?: boolean) => {
     contractTable.isLoading = true;
     let result;
     if (store.getters.getProfile.isDeveloper) {

@@ -27,7 +27,7 @@ const getDeveloperList = async function () {
     return res.data;
 }
 
-const getContractDeveloper = async function (client_id?: number, active?: boolean) {
+const getContractDeveloper = async function (client_id?: string, active?: boolean) {
     const res = await http.get("/contract", {
         params: {
             client_id,
@@ -43,6 +43,11 @@ const getContractClient = async function (active?: boolean) {
     return res.data;
 }
 
+const saveContract = async function name(client_id: string) {
+    const res = await http.post("/contract", { clientId: client_id });
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
@@ -50,7 +55,8 @@ const api = {
     getClientList,
     getDeveloperList,
     getContractDeveloper,
-    getContractClient
+    getContractClient,
+    saveContract
 }
 
 export {

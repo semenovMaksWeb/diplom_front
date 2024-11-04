@@ -20,8 +20,8 @@
 import { api } from '@/api';
 import store from '@/store';
 import { computed, onMounted, ref } from 'vue';
-// import { contractTable } from './ContractTable';
 import { toast } from 'vue3-toastify';
+import { contractTable } from './ContractTable';
 
 
 const clientId = ref();
@@ -37,7 +37,7 @@ onMounted(async () => {
     }
 })
 
-const saveContract = () => {
+const saveContract = async () => {
     if (!clientId.value) {
         toast("Не заполнены все поля", {
             "theme": "auto",
@@ -46,8 +46,17 @@ const saveContract = () => {
         })
         return;
     }
-
-    // contractTable.rows.push();
+    const result = await api.saveContract(clientId.value);
+    console.log(result);
+    const row = {
+        id: result.id,
+        date_create: result.date_create,
+        date_end: result.date_end,
+        id_client: result.client.id,
+        name_client: clientList.value.find((cl) => cl.id == result.client.id).name
+    }
+    contractTable.rows.push(row);
+    contractTable.total = contractTable.rows.length;
 }
 
 </script>
