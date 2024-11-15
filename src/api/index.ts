@@ -43,18 +43,30 @@ const getContractClient = async function (active?: boolean) {
     return res.data;
 }
 
-const saveContract = async function name(client_id: string) {
+const saveContract = async function (client_id: string) {
     const res = await http.post("/contract", { clientId: client_id });
     return res.data;
 }
 
-const saveClient = async function name(name: string, surname: string, patronymic: string, telephone: string, password: string) {
+const saveClient = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
     const res = await http.post("/client", { name, surname, patronymic, telephone, password });
     return res.data;
 }
 
-const saveDeveloper = async function name(name: string, surname: string, patronymic: string, telephone: string, password: string) {
+const saveDeveloper = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
     const res = await http.post("/developer", { name, surname, patronymic, telephone, password });
+    return res.data;
+}
+
+
+const taskAdminGet = async function () {
+    const res = await http.get("/taks/all");
+    return res.data;
+}
+
+
+const taskUserGet = async function () {
+    const res = await http.get("/taks");
     return res.data;
 }
 
@@ -68,7 +80,9 @@ const api = {
     getContractClient,
     saveContract,
     saveClient,
-    saveDeveloper
+    saveDeveloper,
+    taskAdminGet,
+    taskUserGet
 }
 
 export {
