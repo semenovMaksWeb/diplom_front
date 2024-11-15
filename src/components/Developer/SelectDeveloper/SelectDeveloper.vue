@@ -1,31 +1,32 @@
 <template>
     <div class="form_elem_container">
         <label class="label" for="">{{ label }}</label>
-        <select v-model="clientId">
-            <option v-for="client in clientList" :key="client.id" :value="client.id">{{ client.name }}</option>
+        <select v-model="developerId">
+            <option v-for="developer in developerList" :key="developer.id" :value="developer.id">{{ developer.name }}
+            </option>
         </select>
     </div>
 </template>
 
 <script>
 export default {
-    name: "SelectClient",
+    name: "SelectDeveloper",
     props: {
-        clientIdProps: {},
+        developerIdProps: {},
         label: { type: String }
     },
     data() {
         return {
-            clientId: null,
+            developerId: null,
         }
 
     },
     watch: {
-        clientIdProps(val, oldVal) {
+        developerIdProps(val) {
             this.clientId = val;
         },
-        clientId(val) {
-            this.$emit("changeClientId", val);
+        developerId(val) {
+            this.$emit("changeDeveloperId", val);
         }
     }
 }
@@ -36,10 +37,10 @@ export default {
 import { api } from '@/api';
 import { onMounted, ref } from 'vue';
 
-const clientList = ref();
+const developerList = ref();
 
 
 onMounted(async () => {
-    clientList.value = (await api.getClientList());
+    developerList.value = (await api.getDeveloperList());
 })
 </script>

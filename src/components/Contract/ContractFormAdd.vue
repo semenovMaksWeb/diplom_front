@@ -2,12 +2,7 @@
     <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
         <fieldset class="fieldset">
             <legend>Создание договор:</legend>
-            <div class="form_elem_container">
-                <label class="label" for="">Выбрать клиента</label>
-                <select v-model="clientId">
-                    <option v-for="client in clientList" :key="client.id" :value="client.id">{{ client.name }}</option>
-                </select>
-            </div>
+            <SelectClient @changeClientId="clientId = event" :clientIdProps="clientId" :label="'Выбрать клиента'" />
             <div class="form_elem_container">
                 <button class="button" @click="saveContract">Сохранить</button>
             </div>
@@ -15,26 +10,29 @@
     </form>
 </template>
 
+<script>
+export default {
+    components: {
+        SelectClient
+    }
+}
+</script>
+
 <script setup>
 
 import { api } from '@/api';
 import store from '@/store';
-import { computed, onMounted, ref } from 'vue';
+import { computed, ref } from 'vue';
 import { toast } from 'vue3-toastify';
 import { contractTable } from './ContractTable';
+import SelectClient from '../Client/SelectClient/SelectClient.vue';
 
 
 const clientId = ref();
-const clientList = ref();
+
 
 const isDeveloper = computed(() => {
     return store.getters.getProfile.isDeveloper
-})
-
-onMounted(async () => {
-    if (isDeveloper.value) {
-        clientList.value = (await api.getClientList());
-    }
 })
 
 const saveContract = async () => {
@@ -47,7 +45,6 @@ const saveContract = async () => {
         return;
     }
     const result = await api.saveContract(clientId.value);
-    console.log(result);
     const row = {
         id: result.id,
         date_create: result.date_create,
