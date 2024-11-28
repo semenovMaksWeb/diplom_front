@@ -2,15 +2,17 @@
     <form @submit.prevent class="form">
         <fieldset class="fieldset">
             <legend>Фильтр задач:</legend>
+
             <div class="form_elem_container">
                 <label class="label" for="">Статус задачи</label>
             </div>
 
-
             <SelectDeveloper :developerIdProps="developerId" label="Разработчик"
                 @changeDeveloperId="developerId = event" />
+
             <SelectClient v-if="isDeveloper" @changeClientId="clientId = event" :clientIdProps="clientId"
                 label="Выбрать клиента" />
+
         </fieldset>
     </form>
 </template>
