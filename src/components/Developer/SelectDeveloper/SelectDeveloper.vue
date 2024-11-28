@@ -2,6 +2,7 @@
     <div class="form_elem_container">
         <label class="label" for="">{{ label }}</label>
         <select v-model="developerId">
+            <option :value="null"></option>
             <option v-for="developer in developerList" :key="developer.id" :value="developer.id">{{ developer.name }}
             </option>
         </select>

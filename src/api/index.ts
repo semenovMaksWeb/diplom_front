@@ -59,14 +59,20 @@ const saveDeveloper = async function (name: string, surname: string, patronymic:
 }
 
 
-const taskAdminGet = async function () {
-    const res = await http.get("/taks/all");
+const taskAdminGet = async function (status_id: string | null, client_id: string | null, developer_id: string | null) {
+    const res = await http.get("/taks/all", {
+        params: { status_id, client_id, developer_id }
+    });
     return res.data;
 }
 
 
-const taskUserGet = async function () {
-    const res = await http.get("/taks");
+const taskUserGet = async function (status_id: string | null, developer_id: string | null) {
+    const res = await http.get("/taks",
+        {
+            params: { status_id, developer_id }
+        }
+    );
     return res.data;
 }
 

@@ -2,6 +2,7 @@
     <div class="form_elem_container">
         <label class="label" for="">{{ label }}</label>
         <select v-model="clientId">
+            <option :value="null"></option>
             <option v-for="client in clientList" :key="client.id" :value="client.id">{{ client.name }}</option>
         </select>
     </div>

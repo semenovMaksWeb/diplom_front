@@ -57,7 +57,7 @@ export const taskTable = reactive({
 export function TaskTable() {
 
     onMounted(async () => {
-        loaderTableTask();
+        loaderTableTask(null, null, null);
     })
     return {
         taskTable

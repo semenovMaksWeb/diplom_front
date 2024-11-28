@@ -16,13 +16,13 @@ export const loaderTableContact = async (filterClient?: string, filterActive?: b
     contractTable.isLoading = false;
 }
 
-export const loaderTableTask = async () => {
+export const loaderTableTask = async (status_id: string | null, developer_id: string | null, client_id: string | null) => {
     taskTable.isLoading = true;
     let result;
     if (store.getters.getProfile.isDeveloper) {
-        result = await api.taskAdminGet();
+        result = await api.taskAdminGet(status_id, client_id, developer_id);
     } else {
-        result = await api.taskUserGet();
+        result = await api.taskUserGet(status_id, developer_id);
     }
     taskTable.rows = result;
     taskTable.total = result.length;
