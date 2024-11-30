@@ -8,14 +8,18 @@ export default createStore({
   state: {
     profile: null,
     activeRowTask: null,
+    openModal: false,
   },
-  
+
   getters: {
     getProfile(state) {
       return state.profile;
     },
     getActiveRowTask(state) {
       return state.activeRowTask;
+    },
+    getOpenModal(state) {
+      return state.openModal;
     }
   },
 
@@ -25,6 +29,9 @@ export default createStore({
     },
     saveActiveRowTask(context, activeRowTask) {
       context.activeRowTask = activeRowTask;
+    },
+    saveOpenModal(context, value) {
+      context.openModal = value;
     }
   },
 
