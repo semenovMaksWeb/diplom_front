@@ -1,5 +1,5 @@
 <template>
-    <VueTableLite v-bind="taskTable" />
+    <VueTableLite v-bind="taskTable" @is-finished="tableLoadingFinish"  />
 </template>
 
 <script lang="ts">

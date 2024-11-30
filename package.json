@@ -11,6 +11,7 @@
     "axios": "^1.7.7",
     "core-js": "^3.8.3",
     "vue": "^3.2.13",
+    "vue-final-modal": "^4.5.5",
     "vue-router": "^4.0.3",
     "vue3-cookies": "^1.0.6",
     "vue3-table-lite": "^1.4.0",
