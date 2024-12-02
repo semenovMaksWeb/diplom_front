@@ -18,12 +18,13 @@ export default {
     },
     data() {
         return {
-            developerId: null,
+            developerId: this.developerIdProps,
         }
 
     },
     watch: {
         developerIdProps(val) {
+            console.log(val);            
             this.clientId = val;
         },
         developerId(val) {

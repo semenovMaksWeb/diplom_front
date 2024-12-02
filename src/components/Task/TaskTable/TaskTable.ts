@@ -1,7 +1,6 @@
 import { loaderTableTask } from "@/script/loaderTable"
 import store from "@/store";
 import { onMounted, reactive } from "vue"
-import { useVfm } from 'vue-final-modal'
 
 export const taskTable = reactive({
     isLoading: false,
@@ -65,7 +64,6 @@ export const taskTable = reactive({
 })
 
 export function TaskTable() {
-    const vfm = useVfm();
     const tableLoadingFinish = (elements: any) => {
         console.log(elements);
         setTimeout(() => {
@@ -73,8 +71,8 @@ export function TaskTable() {
                 element.onclick = () => {
                     const rowActive = taskTable.rows.find((row: any) => row.id == element.dataset.id);
                     store.commit("saveOpenModal", true);
+                    console.log(rowActive);                    
                     store.commit("saveActiveRowTask", rowActive);
-                    console.log("open?");
                 }
             }
         }, 100);
