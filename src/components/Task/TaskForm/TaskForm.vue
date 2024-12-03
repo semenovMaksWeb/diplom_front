@@ -1,11 +1,16 @@
 <template>
     <teleport to="body">
         <div class="modal-wrapper" v-if="show" tabindex="-1" @keyup.esc="showUpdate(false)">
-            {{ activeRowTask }}
             <div class="modal-content">
                 <div class="modal-header">Заявка # {{ activeRowTask.id }}</div>
                 <div class="modal-body">
                     <TaskFormAdd :update="true" />
+                    <div>
+                        <button>В проверке</button>
+                        <button v-if="isVisibleButtonWork">В работе</button>
+                        <button>Выполнена</button>
+                        <button>Отмененна</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -24,9 +29,28 @@ export default {
         show() {
             return store.getters.getOpenModal;
         },
+
         activeRowTask() {
             return store.getters.getActiveRowTask
-        }
+        },
+
+        isVisibleButtonWork() {
+            if (store.getters.getProfile.isDeveloper && this.activeRowTask.developer_id == store.getters.getProfile.user.id) {
+                return true;
+            }
+            return false;
+        },
+
+        isVisibleButtonCheck() {
+
+        },
+        isVisibleButtonSuccess() {
+
+        },
+
+        isVisibleButtonCancel() {
+
+        },
     },
     components: {
         VueFinalModal,

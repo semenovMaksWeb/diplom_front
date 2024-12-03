@@ -13,8 +13,8 @@
             <SelectDeveloper :developerIdProps="developerId" label="Разработчик"
                 @changeDeveloperId="developerId = event" />
 
-            <button v-if="update" @click="updateClient">Изменить задачу</button>
-            <button v-else="update" @click="saveClient">Создать задачу</button>
+            <button class="button" v-if="update" @click="updateClient">Изменить задачу</button>
+            <button class="button" v-else="update" @click="saveClient">Создать задачу</button>
         </fieldset>
     </form>
 </template>
@@ -40,7 +40,7 @@ const developerId = ref(null);
 const init = () => {
     if (props.update) {
         console.log(store.getters.getActiveRowTask);
-        
+
         id.value = store.getters.getActiveRowTask.id;
         theme.value = store.getters.getActiveRowTask.theme;
         message.value = store.getters.getActiveRowTask.message;
@@ -51,7 +51,7 @@ const init = () => {
 init();
 
 const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
+    return !store.getters.getProfile.isDeveloper
 })
 
 
