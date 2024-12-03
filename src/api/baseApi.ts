@@ -7,6 +7,7 @@ const http = axios.create({
     baseURL: "http://localhost:3000/",
 });
 
+
 const { cookies } = useCookies();
 
 http.interceptors.request.use((res) => {

@@ -81,6 +81,16 @@ const taskUserGet = async function (status_id: string | null, developer_id: stri
     return res.data;
 }
 
+
+const updateStatusTask = async function (status_id: string | null, taks_id: string | null) {
+    const res = await http.put("/taks/status", null,
+        {
+            params: { status_id, task_id: taks_id }
+        }
+    );
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
@@ -98,6 +108,7 @@ const api = {
 
     taskAdminGet,
     taskUserGet,
+    updateStatusTask,
 
 }
 
