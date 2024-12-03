@@ -11,7 +11,7 @@
                 <textarea v-model="message" />
             </div>
             <SelectDeveloper :developerIdProps="developerId" label="Разработчик"
-                @changeDeveloperId="developerId = event" />
+                @changeDeveloperId="setDeveloperId" />
 
             <button class="button" v-if="update" @click="updateClient">Изменить задачу</button>
             <button class="button" v-else="update" @click="saveClient">Создать задачу</button>
@@ -39,8 +39,6 @@ const developerId = ref(null);
 
 const init = () => {
     if (props.update) {
-        console.log(store.getters.getActiveRowTask);
-
         id.value = store.getters.getActiveRowTask.id;
         theme.value = store.getters.getActiveRowTask.theme;
         message.value = store.getters.getActiveRowTask.message;
@@ -54,10 +52,12 @@ const isDeveloper = computed(() => {
     return !store.getters.getProfile.isDeveloper
 })
 
-
+const setDeveloperId = (e) => {
+    developerId.value = e;
+}
 
 const saveClient = async () => {
-    const res = await api.saveDeveloper(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
+    const res = await api.saveTask(theme.value, message.value, developerId.value);
     tableDeveloper.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
     tableDeveloper.total = tableDeveloper.rows.length;
 }
@@ -65,8 +65,5 @@ const saveClient = async () => {
 const updateClient = () => {
 
 }
-
-
-
 
 </script>

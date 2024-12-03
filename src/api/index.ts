@@ -58,6 +58,11 @@ const saveDeveloper = async function (name: string, surname: string, patronymic:
     return res.data;
 }
 
+const saveTask = async function (theme: string, message: string, developer_id: string) {
+    const res = await http.post("/taks", { theme, message, developer_id, });
+    return res.data;
+}
+
 
 const taskAdminGet = async function (status_id: string | null, client_id: string | null, developer_id: string | null) {
     const res = await http.get("/taks/all", {
@@ -80,15 +85,20 @@ const api = {
     auth,
     getProfile,
     exit,
+
     getClientList,
     getDeveloperList,
     getContractDeveloper,
     getContractClient,
+
     saveContract,
     saveClient,
     saveDeveloper,
+    saveTask,
+
     taskAdminGet,
-    taskUserGet
+    taskUserGet,
+
 }
 
 export {
