@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form task_form_add" v-if="isDeveloper">
+    <form @submit.prevent class="form task_form_add">
         <fieldset class="fieldset">
             <legend>Создание задачи:</legend>
             <div class="form_elem_container">
@@ -10,8 +10,7 @@
                 <label class="label" for="">Сообщение задачи</label>
                 <textarea v-model="message" />
             </div>
-            <SelectDeveloper :developerIdProps="developerId" label="Разработчик"
-                @changeDeveloperId="setDeveloperId" />
+            <SelectDeveloper :developerIdProps="developerId" label="Разработчик" @changeDeveloperId="setDeveloperId" />
 
             <button class="button" v-if="update" @click="updateClient">Изменить задачу</button>
             <button class="button" v-else="update" @click="saveClient">Создать задачу</button>
@@ -49,7 +48,7 @@ const init = () => {
 init();
 
 const isDeveloper = computed(() => {
-    return !store.getters.getProfile.isDeveloper
+    return store.getters.getProfile.isDeveloper
 })
 
 const setDeveloperId = (e) => {
