@@ -6,10 +6,10 @@
                 <div class="modal-body">
                     <TaskFormAdd :update="true" />
                     <div>
-                        <button>В проверке</button>
-                        <button v-if="isVisibleButtonWork">В работе</button>
-                        <button>Выполнена</button>
-                        <button>Отмененна</button>
+                        <button v-if="isVisibleButtonCheck">К проверке задачу</button>
+                        <button v-if="isVisibleButtonWork">Взять в работу</button>
+                        <button v-if="isVisibleButtonSuccess">Выполнить задачу</button>
+                        <button v-if="isVisibleButtonCancel">Отменить задачу</button>
                     </div>
                 </div>
             </div>
@@ -42,14 +42,21 @@ export default {
         },
 
         isVisibleButtonCheck() {
-
+            if (store.getters.getProfile?.isDeveloper && this.activeRowTask.developer_id == store.getters.getProfile.user.id) {
+                return true;
+            }
+            return false;
         },
         isVisibleButtonSuccess() {
-
+            console.log(this.activeRowTask);
+            if (!store.getters.getProfile?.isDeveloper && this.activeRowTask.status_name == "В проверке") {
+                return true;
+            }
+            return false;
         },
 
         isVisibleButtonCancel() {
-
+            return true;
         },
     },
     components: {

@@ -32,7 +32,7 @@ const clientId = ref();
 
 
 const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
+    return store.getters.getProfile?.isDeveloper
 })
 
 const saveContract = async () => {
