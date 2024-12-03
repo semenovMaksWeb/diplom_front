@@ -38,7 +38,7 @@ import { tableClient } from "@/components/Client/TableClient/TableClient.ts"
 
 
 const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
+    return store.getters.getProfile?.isDeveloper
 })
 
 const clientName = ref(null);
