@@ -6,10 +6,13 @@
                 <div class="modal-body">
                     <TaskFormAdd :update="true" />
                     <div>
-                        <button @click="saveStatus(3)" class="button" v-if="isVisibleButtonCheck">К проверке задачу</button>
+                        <button @click="saveStatus(3)" class="button" v-if="isVisibleButtonCheck">К проверке
+                            задачу</button>
                         <button @click="saveStatus(2)" class="button" v-if="isVisibleButtonWork">Взять в работу</button>
-                        <button @click="saveStatus(4)" class="button" v-if="isVisibleButtonSuccess">Выполнить задачу</button>
-                        <button @click="saveStatus(5)" class="button" v-if="isVisibleButtonCancel">Отменить задачу</button>
+                        <button @click="saveStatus(4)" class="button" v-if="isVisibleButtonSuccess">Выполнить
+                            задачу</button>
+                        <button @click="saveStatus(5)" class="button" v-if="isVisibleButtonCancel">Отменить
+                            задачу</button>
                     </div>
                 </div>
             </div>
@@ -24,6 +27,7 @@ import TaskFormAdd from "@/components/Task/TaskFormAdd.vue";
 
 import { VueFinalModal, ModalsContainer } from 'vue-final-modal'
 import { api } from '@/api';
+import { TaskTableUpdateRow } from '../TaskTable/TaskTable';
 
 export default {
     computed: {
@@ -68,8 +72,11 @@ export default {
         showUpdate(val) {
             store.commit("saveOpenModal", val)
         },
-        saveStatus(id_status){
-            api.updateStatusTask(id_status, store.getters.getActiveRowTask.id);
+        async saveStatus(id_status) {
+            await api.updateStatusTask(id_status, store.getters.getActiveRowTask.id);
+            const newRow = await api.getIdTask(store.getters.getActiveRowTask.id);
+            TaskTableUpdateRow(newRow);
+            store.commit("saveOpenModal", false);
         }
     }
 
