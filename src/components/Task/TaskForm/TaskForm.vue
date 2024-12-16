@@ -49,7 +49,6 @@ export default {
             return false;
         },
         isVisibleButtonSuccess() {
-            console.log(this.activeRowTask);
             if (!store.getters.getProfile?.isDeveloper && this.activeRowTask.status_name == "В проверке") {
                 return true;
             }

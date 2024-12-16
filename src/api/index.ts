@@ -91,6 +91,16 @@ const updateStatusTask = async function (status_id: string | null, taks_id: stri
     return res.data;
 }
 
+const updateTask = async function (id: number, theme: string, message: string, developer_id: string) {
+    const res = await http.put("/taks", { id, theme, message, developer_id },);
+    return res.data;
+}
+
+const getIdTask = async function (id: number) {
+    const res = await http.get("/taks/id", { params: { id } });
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
@@ -108,8 +118,10 @@ const api = {
 
     taskAdminGet,
     taskUserGet,
-    updateStatusTask,
 
+    updateStatusTask,
+    updateTask,
+    getIdTask
 }
 
 export {

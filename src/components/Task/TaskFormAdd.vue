@@ -12,8 +12,8 @@
             </div>
             <SelectDeveloper :developerIdProps="developerId" label="Разработчик" @changeDeveloperId="setDeveloperId" />
 
-            <button class="button" v-if="update" @click="updateClient">Изменить задачу</button>
-            <button class="button" v-else="update" @click="saveClient">Создать задачу</button>
+            <button class="button" v-if="update" @click="updateTask">Изменить задачу</button>
+            <button class="button" v-else="update" @click="saveTask">Создать задачу</button>
         </fieldset>
     </form>
 </template>
@@ -22,9 +22,11 @@
 
 import { api } from '@/api';
 import store from '@/store';
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 import { tableDeveloper } from "@/components/Developer/TableDeveloper/TableDeveloper.ts"
 import SelectDeveloper from '@/components/Developer/SelectDeveloper/SelectDeveloper.vue';
+import { TaskTableUpdateRow } from './TaskTable/TaskTable';
+import { toast } from 'vue3-toastify';
 
 const props = defineProps({
     update: Boolean,
@@ -47,22 +49,40 @@ const init = () => {
 
 init();
 
-const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
-})
-
 const setDeveloperId = (e) => {
     developerId.value = e;
 }
 
-const saveClient = async () => {
+const checkTask = () => {
+    if (!theme.value || !message.value || !developerId.value) {
+        toast("Не заполнены все поля", {
+            "theme": "auto",
+            "type": "error",
+            "dangerouslyHTMLString": true
+        })
+        return false;
+    }
+    return true;
+}
+
+
+const saveTask = async () => {
+    if (!checkTask()) {
+        return;
+    }
     const res = await api.saveTask(theme.value, message.value, developerId.value);
     tableDeveloper.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
     tableDeveloper.total = tableDeveloper.rows.length;
 }
 
-const updateClient = () => {
-
+const updateTask = async () => {
+    if (!checkTask()) {
+        return;
+    }
+    await api.updateTask(id.value, theme.value, message.value, developerId.value);
+    const newRow = await api.getIdTask(id.value);
+    TaskTableUpdateRow(newRow);
+    store.commit("saveOpenModal", false)
 }
 
 </script>

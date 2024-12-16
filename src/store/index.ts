@@ -32,7 +32,7 @@ export default createStore({
     },
     saveOpenModal(context, value) {
       context.openModal = value;
-    }
+    },
   },
 
   actions: {

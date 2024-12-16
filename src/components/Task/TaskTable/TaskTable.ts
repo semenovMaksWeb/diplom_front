@@ -65,13 +65,11 @@ export const taskTable = reactive({
 
 export function TaskTable() {
     const tableLoadingFinish = (elements: any) => {
-        console.log(elements);
         setTimeout(() => {
             for (const element of elements) {
                 element.onclick = () => {
                     const rowActive = taskTable.rows.find((row: any) => row.id == element.dataset.id);
                     store.commit("saveOpenModal", true);
-                    console.log(rowActive);                    
                     store.commit("saveActiveRowTask", rowActive);
                 }
             }
@@ -86,4 +84,10 @@ export function TaskTable() {
         tableLoadingFinish,
         taskTable
     }
-} 
+}
+
+export function TaskTableUpdateRow(row: any) {
+    const findIndex = taskTable.rows.findIndex((e: any) => e.id == row.id);
+    const rows = taskTable.rows as any;
+    rows[findIndex] = row;
+}
