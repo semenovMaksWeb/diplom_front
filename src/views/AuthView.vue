@@ -13,3 +13,13 @@ export default defineComponent({
   components: { FormLogin },
 });
 </script>
+
+<style>
+.view_auth {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  margin-top: 0;
+}
+</style>

@@ -6,14 +6,17 @@
             <input v-model="telephone" id="telephone" placeholder="Номер телефона">
         </div>
         <div class="wrapper">
-            <label class="label" for="password">Номер телефона</label>
+            <label class="label label-password" for="password">Пароль</label>
             <input v-model="password" id="password" type="password" placeholder="Пароль">
         </div>
         <div class="wrapper">
             <label class="label" for="developer">Разработчик</label>
             <input v-model="isDeveloper" id="developer" type="checkbox">
         </div>
-        <button @click="clickButton" class="buttonLogin button_success button">Вход</button>
+        <div class="wrapper-button">
+            <button @click="clickButton" class="buttonLogin button_success button">Войти</button>
+        </div>
+
     </form>
 </template>
 
@@ -31,7 +34,38 @@ export default {
 </script>
 
 <style lang="less">
+.wrapper-button {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
 .buttonLogin {
-    margin-top: 10px;
+    padding: 5px 55px;
+}
+
+.formLogin {
+    border: 1px solid #aaa;
+    background-color: #cacaca;
+    padding: 10px;
+
+    .h2 {
+        font-size: 34px;
+        margin-bottom: 20px;
+    }
+
+    .wrapper {
+        font-size: 20px;
+    }
+
+    input {
+        height: 25px;
+        padding-left: 3px;
+        font-size: 16px;
+    }
+
+    .label-password {
+        margin-right: 82px;
+    }
 }
 </style>

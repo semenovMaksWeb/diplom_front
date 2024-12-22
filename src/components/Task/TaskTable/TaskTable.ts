@@ -54,7 +54,7 @@ export const taskTable = reactive({
             label: "button",
             width: "15%",
             display: function (row: any) {
-                const buttonText = `<button class="is-rows-el quick-btn" data-id=${row.id}>Открыть заявку</button>`
+                const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Открыть заявку</button>`
                 return buttonText;
             }
         }

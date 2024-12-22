@@ -2,7 +2,7 @@
     <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
         <fieldset class="fieldset">
             <legend>Создание договор:</legend>
-            <SelectClient @changeClientId="clientId = event" :clientIdProps="clientId" :label="'Выбрать клиента'" />
+            <SelectClient @changeClientId="changeClientId" :clientIdProps="clientId" :label="'Выбрать клиента'" />
             <div class="form_elem_container">
                 <button class="button" @click="saveContract">Сохранить</button>
             </div>
@@ -28,9 +28,11 @@ import { contractTable } from './ContractTable';
 import SelectClient from '../Client/SelectClient/SelectClient.vue';
 
 
+const changeClientId = (e) => {
+    clientId.value = e;
+}
+
 const clientId = ref();
-
-
 const isDeveloper = computed(() => {
     return store.getters.getProfile?.isDeveloper
 })

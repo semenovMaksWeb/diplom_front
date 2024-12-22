@@ -5,7 +5,7 @@
                 <div class="modal-header">Заявка # {{ activeRowTask.id }}</div>
                 <div class="modal-body">
                     <TaskFormAdd :update="true" />
-                    <div>
+                    <div class="modal-footer">
                         <button @click="saveStatus(3)" class="button" v-if="isVisibleButtonCheck">К проверке
                             задачу</button>
                         <button @click="saveStatus(2)" class="button" v-if="isVisibleButtonWork">Взять в работу</button>
@@ -83,7 +83,7 @@ export default {
 }
 </script>
 
-<style>
+<style lang="less">
 .modal-wrapper {
     position: absolute;
     top: 0;
@@ -105,5 +105,11 @@ export default {
     transform: translate(-50%, -50%);
     background-color: #fff;
     padding: 10px;
+    border: 1px solid #000;
+}
+
+.modal-footer {
+    display: flex;
+    gap: 0 5px;
 }
 </style>
