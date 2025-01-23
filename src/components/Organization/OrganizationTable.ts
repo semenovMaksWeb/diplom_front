@@ -38,6 +38,12 @@ export const organizationTable = reactive({
     rows: [],
 })
 
+export function organizationTableUpdateRow(row: any) {
+    const findIndex = organizationTable.rows.findIndex((e: any) => e.id == row.id);
+    const rows = organizationTable.rows as any;
+    rows[findIndex] = row;
+}
+
 export function OrganizationTable() {
     onMounted(async () => {
         loaderTableContact();

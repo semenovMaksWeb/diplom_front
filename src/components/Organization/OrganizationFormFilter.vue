@@ -16,12 +16,8 @@
 <script setup>
 import { api } from '@/api';
 import store from '@/store';
-import { computed, onMounted, ref } from 'vue';
+import { onMounted, ref } from 'vue';
 import { loaderTableContact } from '@/script/loaderTable';
-
-const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
-})
 
 onMounted(async () => {
     if (store.getters.getProfile.isDeveloper) {
@@ -29,8 +25,7 @@ onMounted(async () => {
     }
 })
 
-const filterActive = ref(null);
-const filterClient = ref(null);
+const filterActive = ref(true);
 const clientList = ref([]);
 const clickFilter = async () => {
     await loaderTableContact(filterActive.value);

@@ -55,6 +55,12 @@ export const tableDeveloper = reactive({
     rows: [],
 })
 
+export function developerTableUpdateRow(row: any) {
+    const findIndex = tableDeveloper.rows.findIndex((e: any) => e.id == row.id);
+    const rows = tableDeveloper.rows as any;
+    rows[findIndex] = row;
+}
+
 export function TableDeveloper() {
  
     onMounted(async () => {

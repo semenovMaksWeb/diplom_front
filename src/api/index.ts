@@ -37,6 +37,21 @@ const saveOrganization = async function (client_id: string) {
     return res.data;
 }
 
+const updateOrganization = async function (id: number, active: boolean, name: string) {
+    const res = await http.put("/organization", { id, active, name });
+    return res.data;
+}
+
+const updateClient = async function (id: number, active: boolean) {
+    const res = await http.put("/client", { id, active });
+    return res.data;
+}
+
+const updateDeveloper = async function (id: number, active: boolean) {
+    const res = await http.put("/developer", { id, active });
+    return res.data;
+}
+
 const saveClient = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
     const res = await http.post("/client", { name, surname, patronymic, telephone, password });
     return res.data;
@@ -98,7 +113,7 @@ const api = {
     getClientList,
     getDeveloperList,
     getOrganization,
- 
+
     saveOrganization,
     saveClient,
     saveDeveloper,
@@ -109,6 +124,10 @@ const api = {
 
     updateStatusTask,
     updateTask,
+    updateOrganization,
+    updateClient,
+    updateDeveloper,
+
     getIdTask
 }
 

@@ -10,7 +10,7 @@
 import { defineComponent } from "vue";
 import OrganizationFormFilter from "../components/Organization/OrganizationFormFilter.vue";
 import OrganizationTable from "../components/Organization/OrganizationTable.vue";
-import OrganizationFormAdd from "../components/Organization/OrganizationFormFilter.vue" 
+import OrganizationFormAdd from "../components/Organization/OrganizationFormAdd.vue" 
 
 
 export default defineComponent({

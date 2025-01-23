@@ -55,6 +55,12 @@ export const tableClient = reactive({
     rows: [],
 })
 
+export function clientTableUpdateRow(row: any) {
+    const findIndex = tableClient.rows.findIndex((e: any) => e.id == row.id);
+    const rows = tableClient.rows as any;
+    rows[findIndex] = row;
+}
+
 export function FormTableClient() {
     onMounted(async () => {
         tableClient.isLoading = true;
