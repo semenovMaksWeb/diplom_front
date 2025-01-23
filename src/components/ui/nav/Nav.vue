@@ -5,7 +5,7 @@
       Разработчики
     </router-link>
     <router-link class="link nav__link" to="/task">Задачи</router-link>
-    <router-link class="link nav__link" to="/contract">Договора</router-link>
+    <router-link class="link nav__link" to="/contract" v-if="isDeveloper">Организация</router-link>
   </nav>
 </template>
 

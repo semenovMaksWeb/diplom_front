@@ -1,5 +1,5 @@
 <template>
-    <VueTableLite v-bind="tableDeveloper" />
+    <VueTableLite v-bind="tableDeveloper"  @is-finished="tableLoadingFinishDeveloper" />
 </template>
 
 <script lang="ts">

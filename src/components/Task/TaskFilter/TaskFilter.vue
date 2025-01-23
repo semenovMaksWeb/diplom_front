@@ -46,7 +46,7 @@ const setDeveloperId = (e) => {
 }
 
 const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
+    return store.getters.getProfile?.isDeveloper
 })
 
 const clickFilter = async () => {

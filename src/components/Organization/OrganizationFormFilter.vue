@@ -39,6 +39,6 @@ const filterActive = ref(null);
 const filterClient = ref(null);
 const clientList = ref([]);
 const clickFilter = async () => {
-    await loaderTableContact(filterClient.value, filterActive.value);
+    await loaderTableContact(filterActive.value);
 }
 </script>

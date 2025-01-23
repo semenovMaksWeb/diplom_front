@@ -1,5 +1,7 @@
 import { api } from "@/api"
+import { ActiveButtonTable } from "@/script/activeButtonTable";
 import { onMounted, reactive } from "vue"
+const { buttonDisplay, tableLoadingFinishClient } = ActiveButtonTable();
 
 export const tableClient = reactive({
     isLoading: false,
@@ -36,6 +38,17 @@ export const tableClient = reactive({
             field: "telephone",
             width: "15%",
             sortable: true,
+        },
+        {
+            label: "active",
+            field: "active",
+            width: "10%",
+            sortable: true,
+        },
+        {
+            label: "button",
+            width: "15%",
+            display: buttonDisplay
         }
     ],
     "is-hide-paging": true,
@@ -51,6 +64,7 @@ export function FormTableClient() {
         tableClient.isLoading = false;
     })
     return {
-        tableClient
+        tableClient,
+        tableLoadingFinishClient
     }
 }

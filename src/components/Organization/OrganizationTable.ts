@@ -1,5 +1,8 @@
+import { ActiveButtonTable } from "@/script/activeButtonTable";
 import { loaderTableContact } from "@/script/loaderTable";
 import { onMounted, reactive } from "vue"
+
+const { buttonDisplay, tableLoadingFinishOrganization } = ActiveButtonTable();
 
 export const organizationTable = reactive({
     isLoading: false,
@@ -14,28 +17,21 @@ export const organizationTable = reactive({
             isKey: true,
         },
         {
-            label: "date_create",
-            field: "date_create",
+            label: "name",
+            field: "name",
             width: "10%",
             sortable: true,
         },
         {
-            label: "date_end",
-            field: "date_end",
+            label: "active",
+            field: "active",
             width: "10%",
             sortable: true,
         },
         {
-            label: "id_client",
-            field: "id_client",
-            width: "10%",
-            sortable: true,
-        },
-        {
-            label: "name_client",
-            field: "name_client",
+            label: "button",
             width: "15%",
-            sortable: true,
+            display: buttonDisplay
         }
     ],
     "is-hide-paging": true,
@@ -47,6 +43,7 @@ export function OrganizationTable() {
         loaderTableContact();
     })
     return {
-        organizationTable
+        organizationTable,
+        tableLoadingFinishOrganization
     }
 }

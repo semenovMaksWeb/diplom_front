@@ -27,24 +27,13 @@ const getDeveloperList = async function () {
     return res.data;
 }
 
-const getContractDeveloper = async function (client_id?: string, active?: boolean) {
-    const res = await http.get("/contract", {
-        params: {
-            client_id,
-            active
-        }
-    });
+const getOrganization = async function (active?: boolean) {
+    const res = await http.get("/organization", { params: { active } });
     return res.data;
 }
 
-
-const getContractClient = async function (active?: boolean) {
-    const res = await http.get("/contract/id", { params: { active } });
-    return res.data;
-}
-
-const saveContract = async function (client_id: string) {
-    const res = await http.post("/contract", { clientId: client_id });
+const saveOrganization = async function (client_id: string) {
+    const res = await http.post("/organization", { name: name });
     return res.data;
 }
 
@@ -108,10 +97,9 @@ const api = {
 
     getClientList,
     getDeveloperList,
-    getContractDeveloper,
-    getContractClient,
-
-    saveContract,
+    getOrganization,
+ 
+    saveOrganization,
     saveClient,
     saveDeveloper,
     saveTask,

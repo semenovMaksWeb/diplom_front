@@ -3,17 +3,14 @@ import { organizationTable } from "@/components/Organization/OrganizationTable";
 import { taskTable } from "@/components/Task/TaskTable/TaskTable";
 import store from "@/store"
 
-export const loaderTableContact = async (filterClient?: string, filterActive?: boolean) => {
+export const loaderTableContact = async (filterActive: boolean = true) => {
     organizationTable.isLoading = true;
-    let result;
     if (store.getters.getProfile.isDeveloper) {
-        result = await api.getContractDeveloper(filterClient, filterActive);
-    } else {
-        result = await api.getContractClient(filterActive);
+        const result = await api.getOrganization(filterActive);
+        organizationTable.rows = result;
+        organizationTable.total = result.length;
+        organizationTable.isLoading = false;
     }
-    organizationTable.rows = result;
-    organizationTable.total = result.length;
-    organizationTable.isLoading = false;
 }
 
 export const loaderTableTask = async (status_id: string | null, developer_id: string | null, client_id: string | null) => {
