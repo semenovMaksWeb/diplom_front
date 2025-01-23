@@ -24,7 +24,7 @@ import { api } from '@/api';
 import store from '@/store';
 import { computed, ref } from 'vue';
 import { toast } from 'vue3-toastify';
-import { contractTable } from './ContractTable';
+import { organizationTable } from './OrganizationTable';
 import SelectClient from '../Client/SelectClient/SelectClient.vue';
 
 
@@ -54,8 +54,8 @@ const saveContract = async () => {
         id_client: result.client.id,
         name_client: clientList.value.find((cl) => cl.id == result.client.id).name
     }
-    contractTable.rows.push(row);
-    contractTable.total = contractTable.rows.length;
+    organizationTable.rows.push(row);
+    organizationTable.total = organizationTable.rows.length;
 }
 
 </script>

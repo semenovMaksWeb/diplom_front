@@ -1,17 +1,17 @@
 <template>
-    <VueTableLite v-bind="contractTable" />
+    <VueTableLite v-bind="organizationTable" />
 </template>
 
 <script lang="ts">
 
 import VueTableLite from "vue3-table-lite/ts";
-import { ContractTable } from "./ContractTable"
+import { OrganizationTable } from "./OrganizationTable"
 
 export default {
-    name: "ContractTable",
+    name: "OrganizationTable",
     setup() {
         return {
-            ...ContractTable()
+            ...OrganizationTable()
         }
     },
     components: { VueTableLite }

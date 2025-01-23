@@ -1,7 +1,7 @@
 import { loaderTableContact } from "@/script/loaderTable";
 import { onMounted, reactive } from "vue"
 
-export const contractTable = reactive({
+export const organizationTable = reactive({
     isLoading: false,
     total: 0,
 
@@ -42,11 +42,11 @@ export const contractTable = reactive({
     rows: [],
 })
 
-export function ContractTable() {
+export function OrganizationTable() {
     onMounted(async () => {
         loaderTableContact();
     })
     return {
-        contractTable
+        organizationTable
     }
 }
