@@ -6,12 +6,6 @@
                 <label class="label" for="">Активные записи</label>
                 <input type="checkbox" v-model="filterActive" />
             </div>
-            <div class="form_elem_container" v-if="isDeveloper">
-                <label class="label" for="">Выбрать клиента</label>
-                <select v-model="filterClient">
-                    <option v-for="client in clientList" :key="client.id" :value="client.id">{{ client.name }}</option>
-                </select>
-            </div>
             <div class="form_elem_container">
                 <button class="button" @click="clickFilter">Поиск</button>
             </div>
