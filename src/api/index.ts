@@ -32,8 +32,8 @@ const getOrganization = async function (active?: boolean) {
     return res.data;
 }
 
-const saveOrganization = async function (client_id: string) {
-    const res = await http.post("/organization", { name: name });
+const saveOrganization = async function (name: string) {
+    const res = await http.post("/organization", { name: name, active: true });
     return res.data;
 }
 

@@ -1,8 +1,12 @@
 <template>
     <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
         <fieldset class="fieldset">
-            <legend>Создание договор:</legend>
-            <SelectClient @changeClientId="changeClientId" :clientIdProps="clientId" :label="'Выбрать клиента'" />
+            {{ nameOrganization }}
+            <legend>Создание организации:</legend>
+            <div class="form_elem_container">
+                <label class="label" for="">Имя организации</label>
+                <input v-model="nameOrganization" />
+            </div>
             <div class="form_elem_container">
                 <button class="button" @click="saveContract">Сохранить</button>
             </div>
@@ -28,32 +32,21 @@ import { organizationTable } from './OrganizationTable';
 import SelectClient from '../Client/SelectClient/SelectClient.vue';
 
 
-const changeClientId = (e) => {
-    clientId.value = e;
-}
-
-const clientId = ref();
+const nameOrganization = ref();
 const isDeveloper = computed(() => {
     return store.getters.getProfile?.isDeveloper
 })
 
 const saveContract = async () => {
-    if (!clientId.value) {
-        toast("Не заполнены все поля", {
+    if (!nameOrganization.value) {
+        toast("Не заполнено поле 'Имя организации'", {
             "theme": "auto",
             "type": "error",
             "dangerouslyHTMLString": true
         })
         return;
-    }
-    const result = await api.saveContract(clientId.value);
-    const row = {
-        id: result.id,
-        date_create: result.date_create,
-        date_end: result.date_end,
-        id_client: result.client.id,
-        name_client: clientList.value.find((cl) => cl.id == result.client.id).name
-    }
+    }    
+    const row = await api.saveOrganization(nameOrganization.value);
     organizationTable.rows.push(row);
     organizationTable.total = organizationTable.rows.length;
 }
