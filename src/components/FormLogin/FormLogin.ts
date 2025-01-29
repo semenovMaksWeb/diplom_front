@@ -9,10 +9,10 @@ export function FormLogin() {
 
     const telephone = ref("");
     const password = ref("");
-    const isDeveloper = ref(false);
+    const isExecutor = ref(false);
 
     const clickButton = async function () {
-        const res = await api.auth(telephone.value, password.value, isDeveloper.value);
+        const res = await api.auth(telephone.value, password.value, isExecutor.value);
         cookies.set("token", res);
         await store.dispatch("acitonProfile");
         await router.push("/");
@@ -20,7 +20,7 @@ export function FormLogin() {
     return {
         telephone,
         password,
-        isDeveloper,
+        isExecutor,
         clickButton
     }
 }

@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
+    <form @submit.prevent class="form contract_form_add" v-if="isExecutor">
         <fieldset class="fieldset">
             <legend>Создание разработчика:</legend>
             <div class="form_elem_container">
@@ -34,11 +34,11 @@
 import { api } from '@/api';
 import store from '@/store';
 import { computed, ref } from 'vue';
-import { tableDeveloper } from "@/components/Developer/TableDeveloper/TableDeveloper.ts"
+import { tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor.ts"
 
 
-const isDeveloper = computed(() => {
-    return store.getters.getProfile.isDeveloper
+const isExecutor = computed(() => {
+    return store.getters.getProfile.isExecutor
 })
 
 const clientName = ref(null);
@@ -49,9 +49,9 @@ const clientPassword = ref(null);
 
 
 const saveClient = async () => {
-    const res = await api.saveDeveloper(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
-    tableDeveloper.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
-    tableDeveloper.total = tableDeveloper.rows.length;
+    const res = await api.saveExecutor(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
+    tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
+    tableExecutor.total = tableExecutor.rows.length;
 }
 
 

@@ -1,15 +1,15 @@
 <template>
-    <VueTableLite v-bind="tableDeveloper"  @is-finished="tableLoadingFinishDeveloper" />
+    <VueTableLite v-bind="tableExecutor"  @is-finished="tableLoadingFinishExecutor" />
 </template>
 
 <script lang="ts">
 
 import VueTableLite from "vue3-table-lite/ts";
-import { TableDeveloper } from "./TableDeveloper";
+import { TableExecutor } from "./TableExecutor";
 export default {
     setup() {
         return {
-            ...TableDeveloper()
+            ...TableExecutor()
         }
     },
     components: { VueTableLite }

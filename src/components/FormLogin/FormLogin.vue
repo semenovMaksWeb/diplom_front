@@ -10,8 +10,8 @@
             <input v-model="password" id="password" type="password" placeholder="Пароль">
         </div>
         <div class="wrapper">
-            <label class="label" for="developer">Разработчик</label>
-            <input v-model="isDeveloper" id="developer" type="checkbox">
+            <label class="label" for="executor">Исполнитель</label>
+            <input v-model="isExecutor" id="executor" type="checkbox">
         </div>
         <div class="wrapper-button">
             <button @click="clickButton" class="buttonLogin button_success button">Войти</button>

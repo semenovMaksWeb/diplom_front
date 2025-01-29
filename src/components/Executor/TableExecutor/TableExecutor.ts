@@ -2,8 +2,8 @@ import { api } from "@/api"
 import { ActiveButtonTable } from "@/script/activeButtonTable";
 import { onMounted, reactive } from "vue"
 
-const { buttonDisplay, tableLoadingFinishDeveloper } = ActiveButtonTable();
-export const tableDeveloper = reactive({
+const { buttonDisplay, tableLoadingFinishExecutor } = ActiveButtonTable();
+export const tableExecutor = reactive({
     isLoading: false,
     total: 0,
 
@@ -55,23 +55,23 @@ export const tableDeveloper = reactive({
     rows: [],
 })
 
-export function developerTableUpdateRow(row: any) {
-    const findIndex = tableDeveloper.rows.findIndex((e: any) => e.id == row.id);
-    const rows = tableDeveloper.rows as any;
+export function executorTableUpdateRow(row: any) {
+    const findIndex = tableExecutor.rows.findIndex((e: any) => e.id == row.id);
+    const rows = tableExecutor.rows as any;
     rows[findIndex] = row;
 }
 
-export function TableDeveloper() {
+export function TableExecutor() {
  
     onMounted(async () => {
-        tableDeveloper.isLoading = true;
-        const result = await api.getDeveloperList();
-        tableDeveloper.rows = result;
-        tableDeveloper.total = result.length;
-        tableDeveloper.isLoading = false;
+        tableExecutor.isLoading = true;
+        const result = await api.getExecutorList();
+        tableExecutor.rows = result;
+        tableExecutor.total = result.length;
+        tableExecutor.isLoading = false;
     })
     return {
-        tableDeveloper,
-        tableLoadingFinishDeveloper
+        tableExecutor,
+        tableLoadingFinishExecutor
     }
 }

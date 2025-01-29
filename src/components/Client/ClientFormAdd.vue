@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
+    <form @submit.prevent class="form contract_form_add" v-if="isExecutor">
         <fieldset class="fieldset">
             <legend>Создание клиента:</legend>
             <div class="form_elem_container">
@@ -37,8 +37,8 @@ import { computed, ref } from 'vue';
 import { tableClient } from "@/components/Client/TableClient/TableClient.ts"
 
 
-const isDeveloper = computed(() => {
-    return store.getters.getProfile?.isDeveloper
+const isExecutor = computed(() => {
+    return store.getters.getProfile?.isExecutor
 })
 
 const clientName = ref(null);

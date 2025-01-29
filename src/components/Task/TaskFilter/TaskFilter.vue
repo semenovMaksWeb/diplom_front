@@ -7,9 +7,9 @@
                 <label class="label" for="">Статус задачи</label>
             </div>
 
-            <SelectDeveloper :developerIdProps="developerId" label="Разработчик" @changeDeveloperId="setDeveloperId" />
+            <SelectExecutor :executorIdProps="executorId" label="Разработчик" @changeExecutorId="setExecutorId" />
 
-            <SelectClient v-if="isDeveloper" @changeClientId="setClientId" :clientIdProps="clientId"
+            <SelectClient v-if="isExecutor" @changeClientId="setClientId" :clientIdProps="clientId"
                 label="Выбрать клиента" />
             <div class="form_elem_container">
                 <button class="button" @click="clickFilter">Поиск</button>
@@ -20,14 +20,14 @@
 
 <script>
 import SelectClient from '@/components/Client/SelectClient/SelectClient.vue';
-import SelectDeveloper from '@/components/Developer/SelectDeveloper/SelectDeveloper.vue';
+import SelectExecutor from '@/components/Executor/SelectExecutor/SelectExecutor.vue';
 import { computed, ref } from 'vue';
 import { loaderTableTask } from '@/script/loaderTable';
 
 export default {
     components: {
         SelectClient,
-        SelectDeveloper
+        SelectExecutor
     }
 }
 </script>
@@ -35,22 +35,22 @@ export default {
 <script setup>
 import store from '@/store';
 const clientId = ref();
-const developerId = ref();
+const executorId = ref();
 
 const setClientId = (e) => {
     clientId.value = e;
 }
 
-const setDeveloperId = (e) => {
-    developerId.value = e;
+const setExecutorId = (e) => {
+    executorId.value = e;
 }
 
-const isDeveloper = computed(() => {
-    return store.getters.getProfile?.isDeveloper
+const isExecutor = computed(() => {
+    return store.getters.getProfile?.isExecutor
 })
 
 const clickFilter = async () => {
-    console.log(developerId.value, clientId.value);
-    await loaderTableTask(null, developerId.value, clientId.value);
+    console.log(executorId.value, clientId.value);
+    await loaderTableTask(null, executorId.value, clientId.value);
 }
 </script>

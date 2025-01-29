@@ -23,9 +23,9 @@ const routes: Array<RouteRecordRaw> = [
   },
 
   {
-    path: "/developer",
-    name: "DeveloperView",
-    component: () => import("../views/DeveloperView.vue"),
+    path: "/executor",
+    name: "ExecutorView",
+    component: () => import("../views/ExecutorView.vue"),
   },
 
   {

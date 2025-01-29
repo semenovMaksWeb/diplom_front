@@ -1,9 +1,9 @@
 <template>
     <div class="form_elem_container">
         <label class="label" for="">{{ label }}</label>
-        <select v-model="developerId">
+        <select v-model="executorId">
             <option :value="null"></option>
-            <option v-for="developer in developerList" :key="developer.id" :value="developer.id">{{ developer.name }}
+            <option v-for="executor in executorList" :key="executor.id" :value="executor.id">{{ executor.name }}
             </option>
         </select>
     </div>
@@ -11,24 +11,24 @@
 
 <script>
 export default {
-    name: "SelectDeveloper",
+    name: "SelectExecutor",
     props: {
-        developerIdProps: {},
+        executorIdProps: {},
         label: { type: String }
     },
     data() {
         return {
-            developerId: this.developerIdProps,
+            executorId: this.executorIdProps,
         }
 
     },
     watch: {
-        developerIdProps(val) {
+        executorIdProps(val) {
             console.log(val);            
             this.clientId = val;
         },
-        developerId(val) {
-            this.$emit("changeDeveloperId", val);
+        executorId(val) {
+            this.$emit("changeExecutorId", val);
         }
     }
 }
@@ -39,10 +39,10 @@ export default {
 import { api } from '@/api';
 import { onMounted, ref } from 'vue';
 
-const developerList = ref();
+const executorList = ref();
 
 
 onMounted(async () => {
-    developerList.value = (await api.getDeveloperList());
+    executorList.value = (await api.getExecutorList());
 })
 </script>

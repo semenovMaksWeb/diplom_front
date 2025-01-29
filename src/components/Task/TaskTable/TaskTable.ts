@@ -39,8 +39,8 @@ export const taskTable = reactive({
             sortable: true,
         },
         {
-            label: "developer_name",
-            field: "developer_name",
+            label: "executor_name",
+            field: "executor_name",
             width: "15%",
             sortable: true,
         },

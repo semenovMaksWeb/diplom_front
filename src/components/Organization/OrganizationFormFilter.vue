@@ -20,7 +20,7 @@ import { onMounted, ref } from 'vue';
 import { loaderTableContact } from '@/script/loaderTable';
 
 onMounted(async () => {
-    if (store.getters.getProfile.isDeveloper) {
+    if (store.getters.getProfile.isExecutor) {
         clientList.value = (await api.getClientList());
     }
 })

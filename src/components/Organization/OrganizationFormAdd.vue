@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form contract_form_add" v-if="isDeveloper">
+    <form @submit.prevent class="form contract_form_add" v-if="isExecutor">
         <fieldset class="fieldset">
             {{ nameOrganization }}
             <legend>Создание организации:</legend>
@@ -33,8 +33,8 @@ import SelectClient from '../Client/SelectClient/SelectClient.vue';
 
 
 const nameOrganization = ref();
-const isDeveloper = computed(() => {
-    return store.getters.getProfile?.isDeveloper
+const isExecutor = computed(() => {
+    return store.getters.getProfile?.isExecutor
 })
 
 const saveContract = async () => {

@@ -1,11 +1,11 @@
 <template>
   <nav class="nav">
-    <router-link class="link nav__link" to="/client" v-if="isDeveloper">Клиенты</router-link>
-    <router-link class="link nav__link" to="/developer">
-      Разработчики
+    <router-link class="link nav__link" to="/client" v-if="isExecutor">Клиенты</router-link>
+    <router-link class="link nav__link" to="/executor">
+      Исполнители
     </router-link>
     <router-link class="link nav__link" to="/task">Задачи</router-link>
-    <router-link class="link nav__link" to="/contract" v-if="isDeveloper">Организация</router-link>
+    <router-link class="link nav__link" to="/contract" v-if="isExecutor">Организация</router-link>
   </nav>
 </template>
 
@@ -16,8 +16,8 @@ import { defineComponent } from "vue";
 export default defineComponent({
   name: "NavComponent",
   computed: {
-    isDeveloper() {
-      return store.getters.getProfile.isDeveloper
+    isExecutor() {
+      return store.getters.getProfile.isExecutor
     }
   }
 });

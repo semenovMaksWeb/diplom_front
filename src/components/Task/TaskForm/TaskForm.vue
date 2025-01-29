@@ -40,20 +40,20 @@ export default {
         },
 
         isVisibleButtonWork() {
-            if (store.getters.getProfile.isDeveloper && this.activeRowTask.developer_id == store.getters.getProfile.user.id) {
+            if (store.getters.getProfile.isExecutor && this.activeRowTask.executor_id == store.getters.getProfile.user.id) {
                 return true;
             }
             return false;
         },
 
         isVisibleButtonCheck() {
-            if (store.getters.getProfile?.isDeveloper && this.activeRowTask.developer_id == store.getters.getProfile.user.id) {
+            if (store.getters.getProfile?.isExecutor && this.activeRowTask.executor_id == store.getters.getProfile.user.id) {
                 return true;
             }
             return false;
         },
         isVisibleButtonSuccess() {
-            if (!store.getters.getProfile?.isDeveloper && this.activeRowTask.status_name == "В проверке") {
+            if (!store.getters.getProfile?.isExecutor && this.activeRowTask.status_name == "В проверке") {
                 return true;
             }
             return false;

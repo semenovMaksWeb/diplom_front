@@ -1,8 +1,8 @@
 import { http } from "./baseApi"
 
-const auth = async function (telephone: string, password: string, isDeveloper: boolean) {
+const auth = async function (telephone: string, password: string, isExecutor: boolean) {
     const res = await http.post("/authorization", {
-        telephone, password, isDeveloper
+        telephone, password, isExecutor
     });
     return res.data;
 }
@@ -22,8 +22,8 @@ const getClientList = async function () {
     return res.data;
 }
 
-const getDeveloperList = async function () {
-    const res = await http.get("/developer");
+const getExecutorList = async function () {
+    const res = await http.get("/executor");
     return res.data;
 }
 
@@ -47,8 +47,8 @@ const updateClient = async function (id: number, active: boolean) {
     return res.data;
 }
 
-const updateDeveloper = async function (id: number, active: boolean) {
-    const res = await http.put("/developer", { id, active });
+const updateExecutor = async function (id: number, active: boolean) {
+    const res = await http.put("/executor", { id, active });
     return res.data;
 }
 
@@ -57,29 +57,29 @@ const saveClient = async function (name: string, surname: string, patronymic: st
     return res.data;
 }
 
-const saveDeveloper = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
-    const res = await http.post("/developer", { name, surname, patronymic, telephone, password });
+const saveExecutor = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
+    const res = await http.post("/executor", { name, surname, patronymic, telephone, password });
     return res.data;
 }
 
-const saveTask = async function (theme: string, message: string, developer_id: string) {
-    const res = await http.post("/taks", { theme, message, developer_id, });
+const saveTask = async function (theme: string, message: string, executor_id: string) {
+    const res = await http.post("/taks", { theme, message, executor_id, });
     return res.data;
 }
 
 
-const taskAdminGet = async function (status_id: string | null, client_id: string | null, developer_id: string | null) {
+const taskAdminGet = async function (status_id: string | null, client_id: string | null, executor_id: string | null) {
     const res = await http.get("/taks/all", {
-        params: { status_id, client_id, developer_id }
+        params: { status_id, client_id, executor_id }
     });
     return res.data;
 }
 
 
-const taskUserGet = async function (status_id: string | null, developer_id: string | null) {
+const taskUserGet = async function (status_id: string | null, executor_id: string | null) {
     const res = await http.get("/taks",
         {
-            params: { status_id, developer_id }
+            params: { status_id, executor_id }
         }
     );
     return res.data;
@@ -95,8 +95,8 @@ const updateStatusTask = async function (status_id: string | null, taks_id: stri
     return res.data;
 }
 
-const updateTask = async function (id: number, theme: string, message: string, developer_id: string) {
-    const res = await http.put("/taks", { id, theme, message, developer_id },);
+const updateTask = async function (id: number, theme: string, message: string, executor_id: string) {
+    const res = await http.put("/taks", { id, theme, message, executor_id },);
     return res.data;
 }
 
@@ -111,12 +111,12 @@ const api = {
     exit,
 
     getClientList,
-    getDeveloperList,
+    getExecutorList,
     getOrganization,
 
     saveOrganization,
     saveClient,
-    saveDeveloper,
+    saveExecutor,
     saveTask,
 
     taskAdminGet,
@@ -126,7 +126,7 @@ const api = {
     updateTask,
     updateOrganization,
     updateClient,
-    updateDeveloper,
+    updateExecutor,
 
     getIdTask
 }

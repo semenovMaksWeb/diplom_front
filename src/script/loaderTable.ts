@@ -5,7 +5,7 @@ import store from "@/store"
 
 export const loaderTableContact = async (filterActive: boolean = true) => {
     organizationTable.isLoading = true;
-    if (store.getters.getProfile.isDeveloper) {
+    if (store.getters.getProfile.isExecutor) {
         const result = await api.getOrganization(filterActive);
         organizationTable.rows = result;
         organizationTable.total = result.length;
@@ -13,13 +13,13 @@ export const loaderTableContact = async (filterActive: boolean = true) => {
     }
 }
 
-export const loaderTableTask = async (status_id: string | null, developer_id: string | null, client_id: string | null) => {
+export const loaderTableTask = async (status_id: string | null, executor_id: string | null, client_id: string | null) => {
     taskTable.isLoading = true;
     let result;
-    if (store.getters.getProfile.isDeveloper) {
-        result = await api.taskAdminGet(status_id, client_id, developer_id);
+    if (store.getters.getProfile.isExecutor) {
+        result = await api.taskAdminGet(status_id, client_id, executor_id);
     } else {
-        result = await api.taskUserGet(status_id, developer_id);
+        result = await api.taskUserGet(status_id, executor_id);
     }
     taskTable.rows = result;
     taskTable.total = result.length;

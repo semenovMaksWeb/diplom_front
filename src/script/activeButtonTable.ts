@@ -1,6 +1,6 @@
 import { api } from "@/api";
 import { clientTableUpdateRow, tableClient } from "@/components/Client/TableClient/TableClient";
-import { developerTableUpdateRow, tableDeveloper } from "@/components/Developer/TableDeveloper/TableDeveloper";
+import { executorTableUpdateRow, tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor";
 import { organizationTable, organizationTableUpdateRow } from "@/components/Organization/OrganizationTable";
 
 export function ActiveButtonTable() {
@@ -33,13 +33,13 @@ export function ActiveButtonTable() {
         }, 100);
     };
 
-    const tableLoadingFinishDeveloper = (elements: any) => {
+    const tableLoadingFinishExecutor = (elements: any) => {
         setTimeout(() => {
             for (const element of elements) {
                 element.onclick = async () => {
-                    const activeRow: any = tableDeveloper.rows.find((e: any) => e.id == element.dataset.id);
-                    await api.updateDeveloper(activeRow.id, !activeRow.active);
-                    developerTableUpdateRow({ ...activeRow, active: !activeRow.active });
+                    const activeRow: any = tableExecutor.rows.find((e: any) => e.id == element.dataset.id);
+                    await api.updateExecutor(activeRow.id, !activeRow.active);
+                    executorTableUpdateRow({ ...activeRow, active: !activeRow.active });
                 }
             }
         }, 100);
@@ -48,7 +48,7 @@ export function ActiveButtonTable() {
     return {
         buttonDisplay,
         tableLoadingFinishOrganization,
-        tableLoadingFinishDeveloper,
+        tableLoadingFinishExecutor,
         tableLoadingFinishClient
     }
 }
