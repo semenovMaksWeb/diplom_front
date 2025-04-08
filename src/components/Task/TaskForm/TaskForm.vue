@@ -25,7 +25,6 @@
 import store from '@/store';
 import TaskFormAdd from "@/components/Task/TaskFormAdd.vue";
 
-import { VueFinalModal, ModalsContainer } from 'vue-final-modal'
 import { api } from '@/api';
 import { TaskTableUpdateRow } from '../TaskTable/TaskTable';
 
@@ -64,8 +63,6 @@ export default {
         },
     },
     components: {
-        VueFinalModal,
-        ModalsContainer,
         TaskFormAdd
     },
     methods: {
