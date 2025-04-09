@@ -45,9 +45,19 @@ const saveContract = async () => {
         })
         return;
     }
-    const row = await api.saveOrganization(nameOrganization.value);
-    organizationTable.rows.push(row);
-    organizationTable.total = organizationTable.rows.length;
+    try {
+        const row = await api.saveOrganization(nameOrganization.value);
+        organizationTable.rows.push(row);
+        organizationTable.total = organizationTable.rows.length;
+        toast("Организация успешно добавлена", {
+            "theme": "auto",
+            "type": "success",
+            "dangerouslyHTMLString": true
+        });
+        nameOrganization = null;
+    } catch {
+
+    }
 }
 
 </script>

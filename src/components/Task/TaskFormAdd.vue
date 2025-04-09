@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form task_form_add">
+    <form @submit.prevent class="form task_form_add" v-if="!isExecutor">
         <fieldset class="fieldset">
             <legend>Создание задачи:</legend>
             <div class="form_elem_container">
@@ -22,7 +22,7 @@
 
 import { api } from '@/api';
 import store from '@/store';
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 import { tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor.ts"
 import SelectExecutor from '@/components/Executor/SelectExecutor/SelectExecutor.vue';
 import { TaskTableUpdateRow } from './TaskTable/TaskTable';
@@ -37,6 +37,10 @@ const id = ref(null);
 const theme = ref(null);
 const message = ref(null);
 const executorId = ref(null);
+
+const isExecutor = computed(() => {
+    return store.getters?.getProfile?.isExecutor
+})
 
 const init = () => {
     if (props.update) {
@@ -70,9 +74,14 @@ const saveTask = async () => {
     if (!checkTask()) {
         return;
     }
-    const res = await api.saveTask(theme.value, message.value, executorId.value);
-    tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
-    tableExecutor.total = tableExecutor.rows.length;
+    try {
+        const res = await api.saveTask(theme.value, message.value, executorId.value);
+        tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
+        tableExecutor.total = tableExecutor.rows.length;
+    } catch {
+
+    }
+
 }
 
 const updateTask = async () => {
