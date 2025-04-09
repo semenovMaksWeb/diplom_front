@@ -23,7 +23,8 @@
                 <input v-model="clientPassword" type="password" />
             </div>
             <div class="form_elem_container">
-                <OrganizationSelect :organizationIdProps="clientOrganizationId" label="Организация клиента">
+                <OrganizationSelect @changeOrganizationId="setOrganizationId"
+                    :organizationIdProps="clientOrganizationId" label="Организация клиента">
                 </OrganizationSelect>
             </div>
             <div class="form_elem_container">
@@ -40,6 +41,7 @@ import store from '@/store';
 import { computed, ref } from 'vue';
 import { tableClient } from "@/components/Client/TableClient/TableClient.ts"
 import OrganizationSelect from "@/components/Organization/OrganizationSelect.vue"
+import { toast } from 'vue3-toastify';
 
 const isExecutor = computed(() => {
     return store.getters.getProfile?.isExecutor
@@ -54,7 +56,8 @@ const clientOrganizationId = ref(null);
 
 const saveClient = async () => {
     try {
-        const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
+        console.log(1);
+        const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value, clientOrganizationId.value);
         tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
         tableClient.total = tableClient.rows.length;
         toast("Клиент успешно добавлен", {
@@ -69,9 +72,14 @@ const saveClient = async () => {
         clientTelephone.value = null;
         clientPassword.value = null;
         clientOrganizationId.value = null;
-    } catch {
-
+    } catch (e) {
+        console.log(e);
     }
 
+}
+
+
+const setOrganizationId = (e) => {
+    clientOrganizationId.value = e;
 }
 </script>

@@ -52,8 +52,8 @@ const updateExecutor = async function (id: number, active: boolean) {
     return res.data;
 }
 
-const saveClient = async function (name: string, surname: string, patronymic: string, telephone: string, password: string) {
-    const res = await http.post("/client", { name, surname, patronymic, telephone, password });
+const saveClient = async function (name: string, surname: string, patronymic: string, telephone: string, password: string, clientOrganizationId: number) {
+    const res = await http.post("/client", { name, surname, patronymic, telephone, password, clientOrganizationId });
     return res.data;
 }
 

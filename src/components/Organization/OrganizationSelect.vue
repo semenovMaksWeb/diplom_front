@@ -27,7 +27,7 @@ export default {
             this.organizationId = val;
         },
         organizationId(val) {
-            this.$emit("changeorganizationId", val);
+            this.$emit("changeOrganizationId", val);
         }
     }
 }

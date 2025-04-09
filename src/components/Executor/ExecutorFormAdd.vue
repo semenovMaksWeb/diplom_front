@@ -35,6 +35,7 @@ import { api } from '@/api';
 import store from '@/store';
 import { computed, ref } from 'vue';
 import { tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor.ts"
+import { toast } from 'vue3-toastify';
 
 
 const isExecutor = computed(() => {
@@ -58,6 +59,12 @@ const saveClient = async () => {
             "type": "success",
             "dangerouslyHTMLString": true
         });
+        clientName.value = null;
+        clientSurname.value = null;
+        clientPatronymic.value = null;
+        clientTelephone.value = null;
+        clientTelephone.value = null;
+        clientPassword.value = null;
     } catch {
 
     }
