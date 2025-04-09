@@ -91,3 +91,7 @@ export function TaskTableUpdateRow(row: any) {
     const rows = taskTable.rows as any;
     rows[findIndex] = row;
 }
+
+export function TaskTableAddRow(row: never) {
+    taskTable.rows.push(row);
+}

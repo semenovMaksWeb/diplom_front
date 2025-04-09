@@ -25,7 +25,7 @@ export default {
     watch: {
         executorIdProps(val) {
             console.log(val);            
-            this.clientId = val;
+            this.executorId = val;
         },
         executorId(val) {
             this.$emit("changeExecutorId", val);

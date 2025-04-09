@@ -1,5 +1,5 @@
 <template>
-    <form @submit.prevent class="form task_form_add" v-if="!isExecutor">
+    <form @submit.prevent class="form task_form_add" v-if="!isExecutor || update">
         <fieldset class="fieldset">
             <legend>Создание задачи:</legend>
             <div class="form_elem_container">
@@ -23,9 +23,8 @@
 import { api } from '@/api';
 import store from '@/store';
 import { computed, ref } from 'vue';
-import { tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor.ts"
 import SelectExecutor from '@/components/Executor/SelectExecutor/SelectExecutor.vue';
-import { TaskTableUpdateRow } from './TaskTable/TaskTable';
+import { TaskTableUpdateRow, TaskTableAddRow } from './TaskTable/TaskTable';
 import { toast } from 'vue3-toastify';
 
 const props = defineProps({
@@ -75,9 +74,8 @@ const saveTask = async () => {
         return;
     }
     try {
-        const res = await api.saveTask(theme.value, message.value, executorId.value);
-        tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
-        tableExecutor.total = tableExecutor.rows.length;
+        const res = (await api.saveTask(theme.value, message.value, executorId.value));
+        TaskTableAddRow(res);
         toast("Задача успешно добавлена", {
             "theme": "auto",
             "type": "success",
@@ -87,7 +85,8 @@ const saveTask = async () => {
         theme.value = null;
         message.value = null;
         executorId.value = null;
-    } catch {
+    } catch (e) {
+        console.log(e);
 
     }
 
