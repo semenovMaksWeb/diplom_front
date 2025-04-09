@@ -53,7 +53,7 @@ const saveClient = async () => {
         const res = await api.saveExecutor(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
         tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
         tableExecutor.total = tableExecutor.rows.length;
-        toast("Клиент успешно добавлен", {
+        toast("Разработчик успешно добавлен", {
             "theme": "auto",
             "type": "success",
             "dangerouslyHTMLString": true

@@ -53,9 +53,25 @@ const clientPassword = ref(null);
 const clientOrganizationId = ref(null);
 
 const saveClient = async () => {
-    const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
-    console.log(res);
-    tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
-    tableClient.total = tableClient.rows.length;
+    try {
+        const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
+        tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
+        tableClient.total = tableClient.rows.length;
+        toast("Клиент успешно добавлен", {
+            "theme": "auto",
+            "type": "success",
+            "dangerouslyHTMLString": true
+        });
+        clientName.value = null;
+        clientSurname.value = null;
+        clientPatronymic.value = null;
+        clientTelephone.value = null;
+        clientTelephone.value = null;
+        clientPassword.value = null;
+        clientOrganizationId.value = null;
+    } catch {
+
+    }
+
 }
 </script>
