@@ -78,6 +78,15 @@ const saveTask = async () => {
         const res = await api.saveTask(theme.value, message.value, executorId.value);
         tableExecutor.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
         tableExecutor.total = tableExecutor.rows.length;
+        toast("Задача успешно добавлена", {
+            "theme": "auto",
+            "type": "success",
+            "dangerouslyHTMLString": true
+        });
+        id.value = null;
+        theme.value = null;
+        message.value = null;
+        executorId.value = null;
     } catch {
 
     }
