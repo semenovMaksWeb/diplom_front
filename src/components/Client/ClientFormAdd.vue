@@ -55,7 +55,7 @@ const clientOrganizationId = ref(null);
 const saveClient = async () => {
     const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value);
     console.log(res);
-    tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone });
+    tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
     tableClient.total = tableClient.rows.length;
 }
 </script>

@@ -22,6 +22,6 @@ export const loaderTableTask = async (status_id: string | null, executor_id: str
         result = await api.taskUserGet(status_id, executor_id);
     }
     taskTable.rows = result;
-    taskTable.total = result.length;
+    taskTable.total = result?.length;
     taskTable.isLoading = false;
 }
