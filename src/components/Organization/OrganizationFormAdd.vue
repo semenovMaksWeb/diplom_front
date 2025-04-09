@@ -1,7 +1,6 @@
 <template>
     <form @submit.prevent class="form contract_form_add" v-if="isExecutor">
         <fieldset class="fieldset">
-            {{ nameOrganization }}
             <legend>Создание организации:</legend>
             <div class="form_elem_container">
                 <label class="label" for="">Имя организации</label>
@@ -45,7 +44,7 @@ const saveContract = async () => {
             "dangerouslyHTMLString": true
         })
         return;
-    }    
+    }
     const row = await api.saveOrganization(nameOrganization.value);
     organizationTable.rows.push(row);
     organizationTable.total = organizationTable.rows.length;
