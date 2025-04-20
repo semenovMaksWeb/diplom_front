@@ -56,7 +56,6 @@ const clientOrganizationId = ref(null);
 
 const saveClient = async () => {
     try {
-        console.log(1);
         const res = await api.saveClient(clientName.value, clientSurname.value, clientPatronymic.value, clientTelephone.value, clientPassword.value, clientOrganizationId.value);
         tableClient.rows.push({ id: res.id, name: res.name, surname: res.surname, patronymic: res.patronymic, telephone: res.telephone, active: res.active });
         tableClient.total = tableClient.rows.length;
@@ -73,7 +72,7 @@ const saveClient = async () => {
         clientPassword.value = null;
         clientOrganizationId.value = null;
     } catch (e) {
-        console.log(e);
+        console.error(e);
     }
 
 }

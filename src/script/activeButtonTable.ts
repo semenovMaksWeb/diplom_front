@@ -2,6 +2,7 @@ import { api } from "@/api";
 import { clientTableUpdateRow, tableClient } from "@/components/Client/TableClient/TableClient";
 import { executorTableUpdateRow, tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor";
 import { organizationTable, organizationTableUpdateRow } from "@/components/Organization/OrganizationTable";
+import { toast } from 'vue3-toastify';
 
 export function ActiveButtonTable() {
     const buttonDisplay = function (row: any) {
@@ -16,6 +17,11 @@ export function ActiveButtonTable() {
                     const activeRow: any = organizationTable.rows.find((e: any) => e.id == +element.dataset.id);
                     const row = await api.updateOrganization(activeRow.id, !activeRow.active, activeRow.name);
                     organizationTableUpdateRow(row);
+                    toast(`Активность организации изменена`, {
+                        "theme": "auto",
+                        "type": "success",
+                        "dangerouslyHTMLString": true
+                    })
                 }
             }
         }, 100);
@@ -28,6 +34,11 @@ export function ActiveButtonTable() {
                     const activeRow: any = tableClient.rows.find((e: any) => e.id == element.dataset.id);
                     await api.updateClient(activeRow.id, !activeRow.active);
                     clientTableUpdateRow({ ...activeRow, active: !activeRow.active });
+                    toast(`Активность клиента изменена`, {
+                        "theme": "auto",
+                        "type": "success",
+                        "dangerouslyHTMLString": true
+                    })
                 }
             }
         }, 100);
@@ -40,6 +51,11 @@ export function ActiveButtonTable() {
                     const activeRow: any = tableExecutor.rows.find((e: any) => e.id == element.dataset.id);
                     await api.updateExecutor(activeRow.id, !activeRow.active);
                     executorTableUpdateRow({ ...activeRow, active: !activeRow.active });
+                    toast(`Активность испольнителя изменена`, {
+                        "theme": "auto",
+                        "type": "success",
+                        "dangerouslyHTMLString": true
+                    })
                 }
             }
         }, 100);
