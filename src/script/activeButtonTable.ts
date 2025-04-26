@@ -2,12 +2,16 @@ import { api } from "@/api";
 import { clientTableUpdateRow, tableClient } from "@/components/Client/TableClient/TableClient";
 import { executorTableUpdateRow, tableExecutor } from "@/components/Executor/TableExecutor/TableExecutor";
 import { organizationTable, organizationTableUpdateRow } from "@/components/Organization/OrganizationTable";
+import store from "@/store";
 import { toast } from 'vue3-toastify';
 
 export function ActiveButtonTable() {
     const buttonDisplay = function (row: any) {
-        const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Изменить активность</button>`
-        return buttonText;
+        if (store.getters.getProfile?.isExecutor) {
+            const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Изменить активность</button>`
+            return buttonText;
+        }
+        return;
     }
 
     const tableLoadingFinishOrganization = (elements: any) => {

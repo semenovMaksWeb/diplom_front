@@ -1,7 +1,7 @@
 <template>
     <form @submit.prevent class="form task_form_add" v-if="!isExecutor || update">
         <fieldset class="fieldset">
-            <legend>Создание задачи:</legend>
+            <legend>Задача: #{{ id }}</legend>
             <div class="form_elem_container">
                 <label class="label" for="">Тема задачи</label>
                 <input v-model="theme" />
@@ -10,7 +10,7 @@
                 <label class="label" for="">Сообщение задачи</label>
                 <textarea v-model="message" />
             </div>
-            <SelectExecutor :executorIdProps="executorId" label="Разработчик" @changeExecutorId="setExecutorId" />
+            <SelectExecutor :executorIdProps="executorId" label="Исполнитель" @changeExecutorId="setExecutorId" />
 
             <button class="button" v-if="update" @click="updateTask">Изменить задачу</button>
             <button class="button" v-else="update" @click="saveTask">Создать задачу</button>

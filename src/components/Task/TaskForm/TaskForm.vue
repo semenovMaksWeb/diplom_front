@@ -2,7 +2,7 @@
     <teleport to="body">
         <div class="modal-wrapper" v-if="show" tabindex="-1" @keyup.esc="showUpdate(false)">
             <div class="modal-content">
-                <div class="modal-header">Заявка # {{ activeRowTask.id }}</div>
+                <!-- <div class="modal-header">Просмотр задачи </div> -->
                 <div class="modal-body">
                     <TaskFormAdd :update="true" />
                     <div class="modal-footer">

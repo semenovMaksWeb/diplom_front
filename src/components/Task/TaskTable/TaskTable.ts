@@ -15,43 +15,43 @@ export const taskTable = reactive({
             isKey: true,
         },
         {
-            label: "theme",
+            label: "Тема",
             field: "theme",
             width: "10%",
             sortable: true,
         },
         {
-            label: "date_create",
+            label: "Дата задачи",
             field: "date_create",
-            width: "10%",
+            width: "15%",
             sortable: true,
         },
         {
-            label: "date_end",
+            label: "Дата завершения",
             field: "date_end",
-            width: "10%",
+            width: "17%",
             sortable: true,
         },
         {
-            label: "client_name",
+            label: "Клиент",
             field: "client_name",
             width: "15%",
             sortable: true,
         },
         {
-            label: "executor_name",
+            label: "Исполнитель",
             field: "executor_name",
             width: "15%",
             sortable: true,
         },
         {
-            label: "status_name",
+            label: "Статус",
             field: "status_name",
             width: "15%",
             sortable: true,
         },
         {
-            label: "button",
+            label: "",
             width: "15%",
             display: function (row: any) {
                 const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Открыть заявку</button>`

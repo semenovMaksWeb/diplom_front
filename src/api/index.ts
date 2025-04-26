@@ -105,6 +105,11 @@ const getIdTask = async function (id: number) {
     return res.data;
 }
 
+const getStatusTask = async function (id: number) {
+    const res = await http.get("/statusTask");
+    return res.data;
+}
+
 const api = {
     auth,
     getProfile,
@@ -128,7 +133,8 @@ const api = {
     updateClient,
     updateExecutor,
 
-    getIdTask
+    getIdTask,
+    getStatusTask
 }
 
 export {

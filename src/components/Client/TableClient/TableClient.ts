@@ -16,37 +16,37 @@ export const tableClient = reactive({
             isKey: true,
         },
         {
-            label: "Name",
+            label: "Имя",
             field: "name",
             width: "10%",
             sortable: true,
         },
         {
-            label: "Surname",
+            label: "Фамилия",
             field: "surname",
             width: "10%",
             sortable: true,
         },
         {
-            label: "Patronymic",
+            label: "Отчество",
             field: "patronymic",
             width: "10%",
             sortable: true,
         },
         {
-            label: "Telephone",
+            label: "Телефон",
             field: "telephone",
             width: "15%",
             sortable: true,
         },
         {
-            label: "active",
+            label: "Активность",
             field: "active",
             width: "10%",
             sortable: true,
         },
         {
-            label: "button",
+            label: "",
             width: "15%",
             display: buttonDisplay
         }
