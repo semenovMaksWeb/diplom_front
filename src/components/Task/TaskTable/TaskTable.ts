@@ -40,7 +40,7 @@ export const taskTable = reactive({
         },
         {
             label: "Исполнитель",
-            field: "executor_name",
+            field: "developer_name",
             width: "15%",
             sortable: true,
         },
@@ -54,7 +54,7 @@ export const taskTable = reactive({
             label: "",
             width: "15%",
             display: function (row: any) {
-                const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Открыть заявку</button>`
+                const buttonText = `<button class="button is-rows-el quick-btn" data-id=${row.id}>Открыть задачу</button>`
                 return buttonText;
             }
         }
